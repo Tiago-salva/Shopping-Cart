@@ -8,10 +8,10 @@ export default function Header() {
       <nav>
         <ul>
           <li>
-            <Link to="products">Productos</Link>{" "}
+            <Link to="/products">Productos</Link>
           </li>
           <li>
-            <Link to="checkout">Carrito</Link>{" "}
+            <Link to="/checkout">Carrito</Link>
           </li>
         </ul>
       </nav>
