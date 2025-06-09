@@ -1,16 +1,19 @@
+import Layout from "./pages/Layout";
 import App from "./App";
-import ErrorPage from "./components/ErrorPage";
+import ErrorPage from "./pages/ErrorPage";
 import Products from "./pages/Products";
+import ProductDetail from "./pages/ProductDetail";
 
 const routes = [
   {
     path: "/",
-    element: <App />,
+    element: <Layout />,
     errorElement: <ErrorPage />,
-  },
-  {
-    path: "products",
-    element: <Products />,
+    children: [
+      { path: "", element: <App /> },
+      { path: "/products", element: <Products /> },
+      { path: "/products/:id", element: <ProductDetail /> },
+    ],
   },
 ];
 
