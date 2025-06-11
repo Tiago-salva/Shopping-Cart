@@ -3,6 +3,7 @@ import App from "./App";
 import ErrorPage from "./pages/ErrorPage";
 import Products from "./pages/Products";
 import ProductDetail from "./pages/ProductDetail";
+import Checkout from "./pages/Checkout";
 
 const routes = [
   {
@@ -13,6 +14,7 @@ const routes = [
       { path: "", element: <App /> },
       { path: "/products", element: <Products /> },
       { path: "/products/:id", element: <ProductDetail /> },
+      { path: "/checkout", element: <Checkout /> },
     ],
   },
 ];
