@@ -1,22 +1,10 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import Card from "../components/Card";
 import { Link } from "react-router-dom";
+import { CartContext } from "../context/CartContext";
 
 export default function Products() {
-  const [products, setProducts] = useState([]);
-  const [error, setError] = useState(null);
-  const [loading, setLoading] = useState(false);
-
-  useEffect(() => {
-    setLoading(true);
-    fetch("https://fakestoreapi.com/products")
-      .then((response) => response.json())
-      .then((data) => {
-        setProducts(data);
-        setLoading(false);
-      })
-      .catch((error) => setError(error));
-  }, []);
+  const { products, error, loading } = useContext(CartContext);
 
   if (error) return <p>Ocurrio un error</p>;
   if (loading) return <p>Cargando producto...</p>;
