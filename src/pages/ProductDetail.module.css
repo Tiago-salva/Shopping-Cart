@@ -5,6 +5,20 @@ main {
     align-items: center;
 }
 
+.selected_product_notification {
+    width: auto;
+    height: 80px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    font-size: 1.5rem;
+    top: 80px;
+    right: 30px;
+    background-color: chartreuse;
+    padding: 5px 20px;
+}
+
 .selected_product_container {
     max-width: 800px;
     background-color: silver;
