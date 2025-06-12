@@ -1,16 +1,14 @@
 import { Link, useParams } from "react-router-dom";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import styles from "./ProductDetail.module.css";
+import { CartContext } from "../context/CartContext";
 
 export default function ProductDetail() {
   const { id } = useParams();
   const [selectedProduct, setSelectedProduct] = useState({});
-  const [error, setError] = useState(null);
-  const [loading, setLoading] = useState(false);
-
-  useEffect(() => {
-    console.log(selectedProduct);
-  }, [selectedProduct]);
+  const { cartItems, addToCart, error, setError, loading, setLoading } =
+    useContext(CartContext);
+  const [productAdded, setProductAdded] = useState(false);
 
   useEffect(() => {
     setLoading(true);
@@ -29,6 +27,13 @@ export default function ProductDetail() {
   return (
     Object.keys(selectedProduct).length > 0 && (
       <>
+        {productAdded && (
+          <p className={styles.selected_product_notification}>
+            {cartItems.find((item) => item.id === selectedProduct.id)
+              ? "El producto ya esta en el carrito"
+              : "Producto añadido al carrito"}
+          </p>
+        )}
         <div className={styles.selected_product_container}>
           <div className={styles.selected_product_img}>
             <img src={selectedProduct.image}></img>
@@ -38,7 +43,17 @@ export default function ProductDetail() {
             <h1>{selectedProduct.title}</h1>
             <p>Calificacion {selectedProduct.rating.rate} </p>
             <p>${selectedProduct.price}</p>
-            <button>Agregar al carrito</button>
+            <button
+              onClick={() => {
+                addToCart(selectedProduct);
+                setProductAdded(true);
+                setTimeout(() => {
+                  setProductAdded(false);
+                }, 1500);
+              }}
+            >
+              Agregar al carrito
+            </button>
             <Link to="/checkout">Comprar</Link>
           </aside>
         </div>
